@@ -1,1 +1,48 @@
-<p>mega-sena works!</p>
+<main class="container p-5 text-center">
+  <div class="bg-danger">
+    <i class="bi bi-star"></i>
+    <i class="bi bi-star"></i>
+    <i class="bi bi-star"></i>
+  </div>
+  <h1>Gerador Mega-Sena</h1>
+  <div class="">
+    <button
+      class="btn btn-outline-primary rounded-circle p-3"
+      style="width: 100px; height: 100px"
+    >
+      {{ number[0] }}
+    </button>
+    <button
+      class="btn btn-outline-secondary rounded-circle p-3"
+      style="width: 100px; height: 100px"
+    >
+      {{ number[1] }}
+    </button>
+    <button
+      class="btn btn-outline-success rounded-circle p-3"
+      style="width: 100px; height: 100px"
+    >
+      {{ number[2] }}
+    </button>
+    <button
+      class="btn btn-outline-danger rounded-circle p-3"
+      style="width: 100px; height: 100px"
+    >
+      {{ number[3] }}
+    </button>
+    <button
+      class="btn btn-outline-warning rounded-circle p-3"
+      style="width: 100px; height: 100px"
+    >
+      {{ number[4] }}
+    </button>
+    <button
+      class="btn btn-outline-info rounded-circle p-3"
+      style="width: 100px; height: 100px"
+    >
+      {{ number[5] }}
+    </button>
+  </div>
+  <span>Clique em gerar jogo!</span>
+  <button (click)="megaSena()">Gerar jogo</button>
+</main>
