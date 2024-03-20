@@ -1,5 +1,6 @@
+import { WriteVarExpr } from '@angular/compiler';
 import { Component } from '@angular/core';
-import { elementAt } from 'rxjs';
+import { elementAt, max, min, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-mega-sena',
@@ -7,20 +8,56 @@ import { elementAt } from 'rxjs';
   styleUrl: './mega-sena.component.css',
 })
 export class MegaSenaComponent {
-  number: number[] = [];
+  number: number[] = [0, 0, 0, 0, 0, 0];
   catch: number[] = [];
   validation: any;
+  error = '';
 
-  megaSena() {
-    for (var a = 0; a < 6; a++) {
-      this.number[a] = Math.floor(Math.random() * 61);
-    }
+  megaSena(maxNumber = 61) {
+    this.hits(() => {
+      var random = Math.floor(Math.random() * maxNumber);
+      for (var a = 0; a < 6; a++) {
+        this.number[a] = random;
+        while (this.number.includes(random)) {
+          random = Math.floor(Math.random() * maxNumber);
+        }
+      }
+    });
   }
 
-  hits() {
-    var arr1 = this.number;
-    var arr2 = this.catch;
-    let intersection = arr1.filter((x) => arr2.includes(x));
-    this.validation = intersection.length;
+  hits(callback: () => void) {
+    const minNumber = 0;
+    const maxNumber = 60;
+    const minInputs = 6;
+
+    for (let b = minNumber; b < minInputs; b++) {
+      if (this.catch[b] < minNumber || this.catch[b] > maxNumber) {
+        this.error = 'Type in a number between 0 and 60';
+        return;
+      }
+    }
+
+    if (this.catch.length < minInputs) {
+      this.error = 'Type in all inputs';
+      return;
+    }
+
+    const hasDuplicate = new Set(this.catch).size !== this.catch.length;
+    if (hasDuplicate) {
+      this.error = 'Duplicate numbers are not allowed';
+      return;
+    }
+
+    this.error = '';
+    document.getElementById('howMuch')?.classList.remove('hidden');
+    let intersection = this.number.filter((x) => this.catch.includes(x)).length;
+
+    this.validation = intersection;
+    callback();
+  }
+
+  reset() {
+    this.catch = [];
+    this.number = [];
   }
 }

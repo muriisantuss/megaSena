@@ -1,4 +1,4 @@
-<main class="container text-center">
+<main class="container py-4 text-center">
   <div class="">
     <i class="bi bi-star-fill bi-lg fs-3 text-warning"></i>
     <i class="bir bi-star-fill fs-1 text-warning"> </i>
@@ -43,13 +43,6 @@
       {{ number[5] }}
     </button>
   </div>
-  <div class="mb-4">
-    <span class="fw-bold fs-6 mb-3">Click to generate game!</span>
-    <br />
-    <button class="btn btn-outline-danger mt-3" (click)="megaSena()">
-      Generate Game
-    </button>
-  </div>
   <section class="">
     <h3 class="mb-4">Make your bet</h3>
     <div class="d-flex gap-2 align-items-center justify-content-center mb-3">
@@ -57,37 +50,37 @@
         maxlength="2"
         [(ngModel)]="catch[0]"
         type="number"
-        class="border border-warning text-warning rounded"
+        class="border border-primary text-primary rounded"
       />
       <input
         maxlength="2"
         [(ngModel)]="catch[1]"
         type="number"
-        class="border border-primary text-primary rounded"
+        class="border border-secondary text-secondary rounded"
       />
       <input
         maxlength="2"
         [(ngModel)]="catch[2]"
         type="number"
-        class="border border-secondary text-secondary rounded"
+        class="border border-success text-success rounded"
       />
       <input
         type="number"
         [(ngModel)]="catch[3]"
         maxlength="2"
-        class="border border-info text-info rounded"
+        class="border border-danger text-danger rounded"
       />
       <input
         type="number"
         [(ngModel)]="catch[4]"
         maxlength="2"
-        class="border border-danger text-danger rounded"
+        class="border border-warning text-warning rounded"
       />
       <input
         type="number"
         [(ngModel)]="catch[5]"
         maxlength="2"
-        class="border border-dark text-dark rounded"
+        class="border border-info text-info rounded"
       />
 
       <!-- <input
@@ -115,9 +108,20 @@
         class="border border-success text-success rounded"
       /> -->
     </div>
-    <button class="btn btn-outline-danger mb-2" (click)="hits()">Hits</button>
-    <p id="howMuch">
+
+    <span class="fw-bold fs-6 mb-3">Click to generate game!</span>
+    <br />
+    <div class="mb-4 row-3 mx-auto">
+      <button class="btn btn-outline-dark me-1 col-2" (click)="megaSena()">
+        Generate Game
+      </button>
+      <button class="btn btn-outline-dark col-2 ms-1" (click)="reset()">
+        Reset
+      </button>
+    </div>
+    <p id="howMuch" class="hidden">
       How much you got right: <strong> {{ validation }}</strong>
     </p>
+    <div>{{ error }}</div>
   </section>
 </main>
