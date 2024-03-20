@@ -2,3 +2,16 @@
   font-family: "Work Sans", sans-serif;
   font-style: normal;
 }
+input {
+  width: 75px;
+  height: 75px;
+  text-align: center;
+  outline: none;
+}
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+.hidden{
+  display: none;
+}
+
